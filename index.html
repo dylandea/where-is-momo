@@ -1,21 +1,15 @@
 <!DOCTYPE html>
-<html style="height:100vh; width:100vw; margin:0;">
+<html>
     <head>
         <title>Où est Momo ?</title>
-        <script>
-            var img1 = new Image();
-            var img2 = new Image();
-            var img3 = new Image();
-            var img4 = new Image();
-            var img5 = new Image();
-            img1.src="1.jpg";
-            img2.src="2.jpg";
-            img3.src="3.jpg";
-            img4.src="3.jpg";
-            img5.src="3.jpg";
-        </script>
     </head>
-    <body>
+    <body style="height:100vh; width:100vw; margin:0;">
+        <img id="img0" src="0.jpg">
+        <img id="img1" src="1.jpg" style="display:none;">
+        <img id="img2" src="2.jpg" style="display:none;">
+        <img id="img3" src="3.jpg" style="display:none;">
+        <img id="img4" src="4.jpg" style="display:none;">
+        <img id="img5" src="5.jpg" style="display:none;">
         <img id="face" onclick="snd.play();newLevel()" src="./momo.png" style="position: absolute;"/>
         <script>
             const FACE_PROPERTIES_BY_LEVELS = {
@@ -65,7 +59,13 @@
             const img1 = new Image();
 
             function newLevel() {
-                document.body.style.cssText = `background: url(${currentLevel}.jpg) no-repeat; background-size: contain`;
+                try{
+                    document.getElementById(`img${currentLevel-1}`).style.display = "none";
+                } catch (e) {
+                    //do nothing
+                }
+                document.getElementById(`img${currentLevel}`).style.cssText = `background: url(${currentLevel}.jpg) no-repeat; background-size: contain; display:block;height:100vh; margin:0;`;
+                /* document.body.style.cssText = `background: url(${currentLevel}.jpg) no-repeat; background-size: contain`; */
                 const face = document.getElementById("face");
                 for (let property in FACE_PROPERTIES_BY_LEVELS[currentLevel]) {
                     face.style[property] = FACE_PROPERTIES_BY_LEVELS[currentLevel][property];
