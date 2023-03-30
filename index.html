@@ -57,22 +57,15 @@
             }
             var snd = new Audio("./applause.mp3");
             let currentLevel = 0;
-            const img1 = new Image();
-
             function newLevel() {
-                if (currentLevel!=0)
-                    document.getElementById(`img${currentLevel-1}`).style.display = "none";
+                if (currentLevel!=0) document.getElementById(`img${currentLevel-1}`).style.display = "none";
                 document.getElementById(`img${currentLevel}`).style.cssText = `background: url(${currentLevel}.jpg) no-repeat; background-size: contain; display:block;height:100vh; margin:0;`;
-                /* document.body.style.cssText = `background: url(${currentLevel}.jpg) no-repeat; background-size: contain`; */
                 const face = document.getElementById("face");
-                for (let property in FACE_PROPERTIES_BY_LEVELS[currentLevel]) {
+                for (let property in FACE_PROPERTIES_BY_LEVELS[currentLevel])
                     face.style[property] = FACE_PROPERTIES_BY_LEVELS[currentLevel][property];
-                }
                 currentLevel++;
                 snd.currentTime=0;
-                if (currentLevel>6) {
-                   face.remove();
-                }
+                if (currentLevel>6) face.remove();
             }
             newLevel();
         </script>
