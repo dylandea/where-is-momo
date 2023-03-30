@@ -2,6 +2,18 @@
 <html style="height:100vh; width:100vw; margin:0;">
     <head>
         <title>Où est Momo ?</title>
+        <script>
+            var img1 = new Image();
+            var img2 = new Image();
+            var img3 = new Image();
+            var img4 = new Image();
+            var img5 = new Image();
+            img1.src="1.jpg";
+            img2.src="2.jpg";
+            img3.src="3.jpg";
+            img4.src="3.jpg";
+            img5.src="3.jpg";
+        </script>
     </head>
     <body>
         <img id="face" onclick="snd.play();newLevel()" src="./momo.png" style="position: absolute;"/>
@@ -50,6 +62,8 @@
             }
             var snd = new Audio("./applause.mp3");
             let currentLevel = 0;
+            const img1 = new Image();
+
             function newLevel() {
                 document.body.style.cssText = `background: url(${currentLevel}.jpg) no-repeat; background-size: contain`;
                 const face = document.getElementById("face");
