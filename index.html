@@ -10,6 +10,7 @@
         <img id="img3" src="3.jpg" style="display:none;">
         <img id="img4" src="4.jpg" style="display:none;">
         <img id="img5" src="5.jpg" style="display:none;">
+        <img id="img6" src="6.jpg" style="display:none;">
         <img id="face" onclick="snd.play();newLevel()" src="./momo.png" style="position: absolute;"/>
         <script>
             const FACE_PROPERTIES_BY_LEVELS = {
@@ -59,11 +60,8 @@
             const img1 = new Image();
 
             function newLevel() {
-                try{
+                if (currentLevel!=0)
                     document.getElementById(`img${currentLevel-1}`).style.display = "none";
-                } catch (e) {
-                    //do nothing
-                }
                 document.getElementById(`img${currentLevel}`).style.cssText = `background: url(${currentLevel}.jpg) no-repeat; background-size: contain; display:block;height:100vh; margin:0;`;
                 /* document.body.style.cssText = `background: url(${currentLevel}.jpg) no-repeat; background-size: contain`; */
                 const face = document.getElementById("face");
@@ -72,6 +70,9 @@
                 }
                 currentLevel++;
                 snd.currentTime=0;
+                if (currentLevel>6) {
+                   face.remove();
+                }
             }
             newLevel();
         </script>
