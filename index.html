@@ -1,19 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html style="height:100vh; width:100vw; margin:0;">
     <head>
         <title>Où est Momo ?</title>
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     </head>
-    <body style="height:100vh; width:100vw; margin:0;">
-        <img id="img0" src="0.jpg">
-        <img id="img1" src="1.jpg" style="display:none;">
-        <img id="img2" src="2.jpg" style="display:none;">
-        <img id="img3" src="3.jpg" style="display:none;">
-        <img id="img4" src="4.jpg" style="display:none;">
-        <img id="img5" src="5.jpg" style="display:none;">
-        <img id="img6" src="6.jpg" style="display:none;">
-        <img id="face" onclick="snd.play();newLevel()" src="./momo.png" style="position: absolute;"/>
+    <body>
+        <img id="face" onclick="snd.play();newLevel()" src="./images/momo.png" style="position: absolute; opacity:0;"/>
         <script>
-            const FACE_PROPERTIES_BY_LEVELS = {
+            const FACE_POSITIONS_BY_LEVELS = {
                 0 : {
                     top: "90vh",
                     left: "10vh",
@@ -23,52 +17,40 @@
                     top: "44vh",
                     left: "120.2vh",
                     height: "16.3vh",
-                    transform: "rotate(-9deg)",
-                    filter: "saturate(80%)"
                 },
                 2 : {
                     top: "42.5vh",
                     left: "34.8vh",
                     height: "6.2vh",
-                    filter: "brightness(200%)",
-                    transform: "rotate(-7deg)"
                 },
                 3 : {
                     top: "37.6vh",
                     left: "86.2vh",
                     height: "8.7vh",
-                    filter: "brightness(90%)",
-                    filter: "saturate(130%)",
-                    transform: "rotate(-10deg)"
                 },
                 4 : {
                     top: "63.8vh",
                     left: "92.8vh",
                     height: "13.1vh",
-                    filter: "saturate(0%)",
-                    transform: "rotate(3deg)"
                 },
                 5 : {
                     top: "8.2vh",
                     left: "86.5vh",
                     height: "7.5vh",
-                    filter: "blur(1px)"
                 }
             }
             var snd = new Audio("./applause.mp3");
             let currentLevel = 0;
             function newLevel() {
-                if (currentLevel!=0) document.getElementById(`img${currentLevel-1}`).style.display = "none";
-                document.getElementById(`img${currentLevel}`).style.cssText = `background: url(${currentLevel}.jpg) no-repeat; background-size: contain; display:block;height:100vh; margin:0;`;
+                document.body.style.cssText = `background: url(./images/${currentLevel}.jpg) no-repeat; background-size: contain`;
                 const face = document.getElementById("face");
-                for (let property in FACE_PROPERTIES_BY_LEVELS[currentLevel])
-                    face.style[property] = FACE_PROPERTIES_BY_LEVELS[currentLevel][property];
+                face.style.top = FACE_POSITIONS_BY_LEVELS[currentLevel].top;
+                face.style.left = FACE_POSITIONS_BY_LEVELS[currentLevel].left;
+                face.style.height = FACE_POSITIONS_BY_LEVELS[currentLevel].height;
                 currentLevel++;
                 snd.currentTime=0;
-                if (currentLevel>6) face.remove();
             }
             newLevel();
         </script>
-
     </body>
 </html>
