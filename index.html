@@ -19,7 +19,7 @@
                 bg.style.cssText += "max-height:100%; max-width:100%;"
                 let imgHeight = bg.getBoundingClientRect().height;
                 let imgWidth = bg.getBoundingClientRect().width;
-                while (imgHeight == 0 || imgWidth == 0) {
+                if (imgHeight == 0 || imgWidth == 0) {
                     bg.style.cssText += "max-height:100%; max-width:100%;"
                     imgHeight = bg.getBoundingClientRect().height;
                     imgWidth = bg.getBoundingClientRect().width;
