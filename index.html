@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html style="height:100vh; width:100vw; margin:0; overflow: hidden;">
     <head>
-        <script>let imgHeight = bg.getBoundingClientRect().height;
-            let imgWidth = bg.getBoundingClientRect().width;
-            if (imgHeight == 0 || imgWidth == 0) location.reload();</script>
         <title>Où est Momo ?</title>
         <link rel="icon" type="image/x-icon" href="./favicon.ico">
-        <style>body::after {position: absolute;width: 0;height: 0;overflow: hidden;z-index: -1;
-                content: url(1.jpg) url(2.jpg) url(3.jpg) url(4.jpg) url(5.jpg) url(6.jpg);}</style>
     </head>
     <body style="height:100vh; width:100vw; margin:0;">
         <img id="bg" src="0.jpg" alt="" style="max-height:100%; max-width:100%;" />
@@ -18,8 +13,9 @@
             const bg = document.getElementById("bg");
             let level = 0;
             function paint() {
-                imgHeight = bg.getBoundingClientRect().height;
-                imgWidth = bg.getBoundingClientRect().width;
+                let imgHeight = bg.getBoundingClientRect().height;
+                let imgWidth = bg.getBoundingClientRect().width;
+                if (imgHeight == 0 || imgWidth == 0) location.reload();
                 let coords = {
                     0: { top: `${imgHeight * 90 / 100}px`, left: `${imgWidth * 4.9 / 100}px`, height: `${imgHeight * 10 / 100}px` },
                     1: { top: `${imgHeight * 44 / 100}px`, left: `${imgWidth * 58.9 / 100}px`, height: `${imgHeight * 16.3 / 100}px` },
@@ -34,5 +30,7 @@
             paint();
             window.onresize = paint;
         </script>
+        <style>body::after {position: absolute;width: 0;height: 0;overflow: hidden;z-index: -1;
+            content: url(1.jpg) url(2.jpg) url(3.jpg) url(4.jpg) url(5.jpg) url(6.jpg);}</style>
     </body>
 </html>
