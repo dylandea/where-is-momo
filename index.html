@@ -15,7 +15,11 @@
             function paint() {
                 let imgHeight = bg.getBoundingClientRect().height;
                 let imgWidth = bg.getBoundingClientRect().width;
-                if (imgHeight == 0 || imgWidth == 0) location.reload();
+                if (imgHeight == 0 || imgWidth == 0) {
+                    bg.style.cssText += "max-height:100%; max-width:100%;"
+                    imgHeight = bg.getBoundingClientRect().height;
+                    imgWidth = bg.getBoundingClientRect().width;
+                }
                 let coords = {
                     0: { top: `${imgHeight * 90 / 100}px`, left: `${imgWidth * 4.9 / 100}px`, height: `${imgHeight * 10 / 100}px` },
                     1: { top: `${imgHeight * 44 / 100}px`, left: `${imgWidth * 58.9 / 100}px`, height: `${imgHeight * 16.3 / 100}px` },
