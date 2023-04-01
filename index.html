@@ -12,6 +12,12 @@
             const face = document.getElementById("face");
             const bg = document.getElementById("bg");
             let level = 0;
+            console.log(imgHeight)
+            const myObserver = new ResizeObserver(entries => {
+console.log(entries)
+});
+myObserver.observe(bg)
+bg.style.cssText += "max-height:100%; max-width:100%;";
             function paint() {
                 let imgHeight = bg.getBoundingClientRect().height;
                 let imgWidth = bg.getBoundingClientRect().width;
