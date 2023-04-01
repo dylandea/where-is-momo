@@ -2,10 +2,12 @@
 <html style="height:100vh; width:100vw; margin:0;">
     <head>
         <title>Où est Momo ?</title>
-        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="./favicon.ico">
+        <style>body::after{position:absolute; width:0; height:0; overflow:hidden; z-index:-1;
+        content:url(1.jpg) url(2.jpg) url(3.jpg) url(4.jpg) url(5.jpg) url(6.jpg);}</style>
     </head>
     <body>
-        <img id="face" onclick="snd.currentTime=0;snd.play();newLevel()" src="./images/momo.png" style="position: absolute; opacity:0;"/>
+        <img id="face" onclick="snd.currentTime=0;snd.play();newLevel()" src="./momo.png" style="position: absolute; opacity:0;"/>
         <script>
             const POSITIONS = {
                 0 : { top: "90vh",      left: "10vh",       height: "10vh" },
@@ -18,7 +20,7 @@
             var snd = new Audio("./applause.mp3");
             let level = 0;
             function newLevel() {
-                document.body.style.cssText = `background: url(./images/${level}.jpg) no-repeat; background-size: contain`;
+                document.body.style.cssText = `background: url(./${level}.jpg) no-repeat; background-size: contain`;
                 const face = document.getElementById("face");
                 face.style.cssText += `top:${POSITIONS[level].top}; left:${POSITIONS[level].left}; height:${POSITIONS[level].height}`;
                 level++;
