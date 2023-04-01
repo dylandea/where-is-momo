@@ -1,31 +1,36 @@
 <!DOCTYPE html>
-<html style="height:100vh; width:100vw; margin:0;">
+<html style="height:100vh; width:100vw; margin:0; overflow: hidden;">
     <head>
         <title>Où est Momo ?</title>
         <link rel="icon" type="image/x-icon" href="./favicon.ico">
-        <style>body::after{position:absolute; width:0; height:0; overflow:hidden; z-index:-1;
-        content:url(1.jpg) url(2.jpg) url(3.jpg) url(4.jpg) url(5.jpg) url(6.jpg);}</style>
+        <style>body::after {position: absolute;width: 0;height: 0;overflow: hidden;z-index: -1;
+                content: url(1.jpg) url(2.jpg) url(3.jpg) url(4.jpg) url(5.jpg) url(6.jpg);}</style>
     </head>
-    <body>
-        <img id="face" onclick="snd.currentTime=0;snd.play();newLevel()" src="./momo.png" style="position: absolute; opacity:0;"/>
+    <body style="height:100vh; width:100vw; margin:0;">
+        <img id="bg" src="0.jpg" alt="" style="max-height:100%; max-width:100%;" />
+        <img id="face" onclick="level++;snd.currentTime=0;snd.play();paint()" src="./momo.png" style="position: absolute; opacity:0;" />
         <script>
-            const POSITIONS = {
-                0 : { top: "90vh",      left: "10vh",       height: "10vh" },
-                1 : { top: "44vh",      left: "120.2vh",    height: "16.3vh" },
-                2 : { top: "42.5vh",    left: "34.8vh",     height: "6.2vh" },
-                3 : { top: "37.6vh",    left: "86.2vh",     height: "8.7vh" },
-                4 : { top: "63.8vh",    left: "92.8vh",     height: "13.1vh" },
-                5 : { top: "8.2vh",     left: "86.5vh",     height: "7.5vh" }
-            }
             var snd = new Audio("./applause.mp3");
+            const face = document.getElementById("face");
+            const bg = document.getElementById("bg");
             let level = 0;
-            function newLevel() {
-                document.body.style.cssText = `background: url(./${level}.jpg) no-repeat; background-size: contain`;
-                const face = document.getElementById("face");
-                face.style.cssText += `top:${POSITIONS[level].top}; left:${POSITIONS[level].left}; height:${POSITIONS[level].height}`;
-                level++;
+            function paint() {
+                let imgHeight = bg.getBoundingClientRect().height;
+                let imgWidth = bg.getBoundingClientRect().width;
+                if (imgHeight == 0 || imgWidth == 0) location.reload();
+                let coords = {
+                    0: { top: `${imgHeight * 90 / 100}px`, left: `${imgWidth * 4.9 / 100}px`, height: `${imgHeight * 10 / 100}px` },
+                    1: { top: `${imgHeight * 44 / 100}px`, left: `${imgWidth * 58.9 / 100}px`, height: `${imgHeight * 16.3 / 100}px` },
+                    2: { top: `${imgHeight * 42.5 / 100}px`, left: `${imgWidth * 17 / 100}px`, height: `${imgHeight * 6.2 / 100}px` },
+                    3: { top: `${imgHeight * 37.6 / 100}px`, left: `${imgWidth * 42.2 / 100}px`, height: `${imgHeight * 8.7 / 100}px` },
+                    4: { top: `${imgHeight * 63.8 / 100}px`, left: `${imgWidth * 45.5 / 100}px`, height: `${imgHeight * 13.1 / 100}px` },
+                    5: { top: `${imgHeight * 8.2 / 100}px`, left: `${imgWidth * 42.5 / 100}px`, height: `${imgHeight * 7.5 / 100}px` },
+                };
+                bg.src = `${level}.jpg`;
+                face.style.cssText += `top:${coords[level].top}; left:${coords[level].left}; height:${coords[level].height}`;
             }
-            newLevel();
+            paint();
+            window.onresize = paint;
         </script>
     </body>
 </html>
