@@ -13,6 +13,10 @@
             const bg = document.getElementById("bg");
             let level = 0;
             function paint() {
+                bodyHeight=window.innerHeight;
+                bodyWidth=window.innerWidth;
+                document.body.style.cssText+=`height:${bodyHeight}; width:${bodyWidth};`
+                bg.style.cssText += "max-height:100%; max-width:100%;"
                 let imgHeight = bg.getBoundingClientRect().height;
                 let imgWidth = bg.getBoundingClientRect().width;
                 while (imgHeight == 0 || imgWidth == 0) {
