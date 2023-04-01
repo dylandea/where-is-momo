@@ -16,6 +16,7 @@
                 let imgHeight = bg.getBoundingClientRect().height;
                 let imgWidth = bg.getBoundingClientRect().width;
                 console.log(imgHeight)
+               // while (imgHeight ==0 || imgWidth==0) location.reload() //marche en local mais pas sur netlify, à vérifier
                 let coords = {
                     0: { top: `${imgHeight * 90 / 100}px`, left: `${imgWidth * 4.9 / 100}px`, height: `${imgHeight * 10 / 100}px` },
                     1: { top: `${imgHeight * 44 / 100}px`, left: `${imgWidth * 58.9 / 100}px`, height: `${imgHeight * 16.3 / 100}px` },
@@ -27,8 +28,8 @@
                 bg.src = `${level}.jpg`;
                 face.style.cssText += `top:${coords[level].top}; left:${coords[level].left}; height:${coords[level].height}`;
             }
+            paint();
             window.onresize = paint;
-            window.dispatchEvent(new Event('resize'));
         </script>
         <style>body::after {position: absolute;width: 0;height: 0;overflow: hidden;z-index: -1;
             content: url(1.jpg) url(2.jpg) url(3.jpg) url(4.jpg) url(5.jpg) url(6.jpg);}</style>
