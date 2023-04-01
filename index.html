@@ -14,23 +14,13 @@
             let level = 0;
             let imgHeight ;
             let imgWidth;
-
             document.onmousemove = function(e) {
-                console.log("hghg")
                 imgHeight = bg.getBoundingClientRect().height;
                 imgWidth = bg.getBoundingClientRect().width;
-                console.log(imgHeight)
             }
             function paint() {
-                
-               
-               /*  if (imgHeight == 0 || imgWidth == 0) {
-                    bg2 = bg;
-                    document.body.firstElementChild.remove();
-                    document.body.insertBefore(bg2, document.body.firstChild);
-                    imgHeight = bg.getBoundingClientRect().height;
-                    imgWidth = bg.getBoundingClientRect().width;
-                } */
+                imgHeight = bg.getBoundingClientRect().height;
+                imgWidth = bg.getBoundingClientRect().width;
                 let coords = {
                     0: { top: `${imgHeight * 90 / 100}px`, left: `${imgWidth * 4.9 / 100}px`, height: `${imgHeight * 10 / 100}px` },
                     1: { top: `${imgHeight * 44 / 100}px`, left: `${imgWidth * 58.9 / 100}px`, height: `${imgHeight * 16.3 / 100}px` },
